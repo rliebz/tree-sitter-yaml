@@ -25,9 +25,9 @@ enum TokenType {
   R_BLK_FLD_BGN,  BR_BLK_FLD_BGN,
                   BR_BLK_STR_CTN,
   R_FLW_SEQ_BGN,  BR_FLW_SEQ_BGN, B_FLW_SEQ_BGN,
-  R_FLW_SEQ_END,  BR_FLW_SEQ_END,
+  R_FLW_SEQ_END,  BR_FLW_SEQ_END, B_FLW_SEQ_END,
   R_FLW_MAP_BGN,  BR_FLW_MAP_BGN, B_FLW_MAP_BGN,
-  R_FLW_MAP_END,  BR_FLW_MAP_END,
+  R_FLW_MAP_END,  BR_FLW_MAP_END, B_FLW_MAP_END,
   R_FLW_SEP_BGN,  BR_FLW_SEP_BGN,
   R_FLW_KEY_BGN,  BR_FLW_KEY_BGN,
   R_FLW_JSV_BGN,  BR_FLW_JSV_BGN,
@@ -762,6 +762,7 @@ struct Scanner {
     } else if (LKA == ']') {
       if (VLD[R_FLW_SEQ_END] && is_r) {ADV();MRK_END();RET_SYM(R_FLW_SEQ_END)}
       if (VLD[BR_FLW_SEQ_END] && is_br) {ADV();MRK_END();RET_SYM(BR_FLW_SEQ_END)}
+      if (VLD[B_FLW_SEQ_END] && is_b) {ADV();MRK_END();RET_SYM(B_FLW_SEQ_END)}
     } else if (LKA == '{') {
       if (VLD[R_FLW_MAP_BGN] && is_r) {MAY_UPD_IMP_COL();ADV();MRK_END();RET_SYM(R_FLW_MAP_BGN)}
       if (VLD[BR_FLW_MAP_BGN] && is_br) {MAY_UPD_IMP_COL();ADV();MRK_END();RET_SYM(BR_FLW_MAP_BGN)}
@@ -769,6 +770,7 @@ struct Scanner {
     } else if (LKA == '}') {
       if (VLD[R_FLW_MAP_END] && is_r) {ADV();MRK_END();RET_SYM(R_FLW_MAP_END)}
       if (VLD[BR_FLW_MAP_END] && is_br) {ADV();MRK_END();RET_SYM(BR_FLW_MAP_END)}
+      if (VLD[B_FLW_MAP_END] && is_b) {ADV();MRK_END();RET_SYM(B_FLW_MAP_END)}
     } else if (LKA == ',') {
       if (VLD[R_FLW_SEP_BGN] && is_r) {ADV();MRK_END();RET_SYM(R_FLW_SEP_BGN)}
       if (VLD[BR_FLW_SEP_BGN] && is_br) {ADV();MRK_END();RET_SYM(BR_FLW_SEP_BGN)}
